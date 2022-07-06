@@ -1,6 +1,6 @@
-"use strict";
 const { gql } = require("apollo-server-express");
-const typeDefs = gql `
+
+const typeDefs = gql`
   input UserInput {
     username: String!
     name: String!
@@ -51,10 +51,12 @@ const typeDefs = gql `
   }
 
   type Query {
+    hello: String
     users: [User]
   }
   type Mutation {
     addUser(user: UserInput!): String
   }
 `;
+
 module.exports = { typeDefs };
