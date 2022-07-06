@@ -18,8 +18,8 @@ const { typeDefs } = require("./graphql/types/typeDefs");
 const { resolvers } = require("./graphql/resolvers/resolvers");
 const authRoute = require("./routes/authRoute");
 const uploadRoute = require("./routes/uploadRoute");
-const app = (0, express_1.default)();
 const server = new apollo_server_express_1.ApolloServer({ typeDefs, resolvers });
+const app = (0, express_1.default)();
 app.use("/auth", authRoute);
 app.use("/upload", uploadRoute);
 function startApolloServer() {

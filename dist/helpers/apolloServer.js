@@ -24,3 +24,4 @@ function startApolloServer() {
         server.applyMiddleware({ app });
     });
 }
+module.exports = { server, startApolloServer };

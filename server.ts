@@ -4,8 +4,8 @@ const { typeDefs } = require("./graphql/types/typeDefs")
 const { resolvers } = require("./graphql/resolvers/resolvers")
 const authRoute = require("./routes/authRoute")
 const uploadRoute = require("./routes/uploadRoute")
-const app = express()
 const server = new ApolloServer({ typeDefs, resolvers })
+const app = express()
 
 
 app.use("/auth", authRoute)
