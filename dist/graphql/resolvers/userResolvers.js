@@ -20,6 +20,15 @@ const userResolvers = {
             }
         });
         return "user created sucess";
+    }),
+    deleteUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+        const userId = args.userId;
+        yield users.delete({
+            where: {
+                id: userId
+            }
+        });
+        return `user with id - ${userId} deleted sucessfully`;
     })
 };
 module.exports = userResolvers;

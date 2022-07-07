@@ -20,8 +20,17 @@ const userResolvers = {
             }
         })
         return "user created sucess"
+    },
+    deleteUser: async (parent: any, args: { userId: number }, ctx: any) => {
+        const userId = args.userId
+        await users.delete({
+            where: {
+                id: userId
+            }
+        })
+        return `user with id - ${userId} deleted sucessfully`
     }
-}
 
+}
 
 module.exports = userResolvers 
