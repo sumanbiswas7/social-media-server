@@ -1,10 +1,9 @@
 import express from "express"
 import { ApolloServer } from "apollo-server-express"
-const { typeDefs } = require("./graphql/types/typeDefs")
-const { resolvers } = require("./graphql/resolvers/resolvers")
 const authRoute = require("./routes/authRoute")
 const uploadRoute = require("./routes/uploadRoute")
-const server = new ApolloServer({ typeDefs, resolvers })
+import { schema } from "./graphql/schema"
+const server = new ApolloServer({ schema })
 const app = express()
 
 

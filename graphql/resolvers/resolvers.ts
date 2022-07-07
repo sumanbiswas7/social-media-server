@@ -2,7 +2,7 @@ const userResolver = require("./userResolvers")
 import { PrismaClient } from "@prisma/client"
 const { users } = new PrismaClient()
 
-const resolvers = {
+export const resolvers = {
     Query: {
         users: async () => {
             return await users.findMany({
@@ -22,4 +22,4 @@ const resolvers = {
     Mutation: userResolver
 }
 
-module.exports = { resolvers }
+// module.exports = { resolvers }

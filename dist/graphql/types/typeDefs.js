@@ -1,5 +1,8 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const schema_1 = require("@graphql-tools/schema");
 const { gql } = require("apollo-server-express");
+const { resolvers } = require("../resolvers/resolvers");
 const typeDefs = gql `
   input UserInput {
     username: String!
@@ -58,4 +61,7 @@ const typeDefs = gql `
     deleteUser(userId: Int!): String
   }
 `;
-module.exports = { typeDefs };
+const schema = (0, schema_1.makeExecutableSchema)({
+    typeDefs: typeDefs, resolvers: resolvers
+});
+module.exports = { typeDefs, schema };

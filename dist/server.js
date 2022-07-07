@@ -14,11 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const apollo_server_express_1 = require("apollo-server-express");
-const { typeDefs } = require("./graphql/types/typeDefs");
-const { resolvers } = require("./graphql/resolvers/resolvers");
 const authRoute = require("./routes/authRoute");
 const uploadRoute = require("./routes/uploadRoute");
-const server = new apollo_server_express_1.ApolloServer({ typeDefs, resolvers });
+const schema_1 = require("./graphql/schema");
+const server = new apollo_server_express_1.ApolloServer({ schema: schema_1.schema });
 const app = (0, express_1.default)();
 app.use("/auth", authRoute);
 app.use("/upload", uploadRoute);

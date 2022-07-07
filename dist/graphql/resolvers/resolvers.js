@@ -9,10 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolvers = void 0;
 const userResolver = require("./userResolvers");
 const client_1 = require("@prisma/client");
 const { users } = new client_1.PrismaClient();
-const resolvers = {
+exports.resolvers = {
     Query: {
         users: () => __awaiter(void 0, void 0, void 0, function* () {
             return yield users.findMany({
@@ -31,4 +32,4 @@ const resolvers = {
     },
     Mutation: userResolver
 };
-module.exports = { resolvers };
+// module.exports = { resolvers }
