@@ -28,4 +28,18 @@ export const typeDefs = `
         user: User
         post: Post
     }
+
+    input PostInput {
+        userId : Int!
+        caption : String
+        image : String
+    }
+
+    type Query {
+        posts: [Post]
+    }    
+    type Mutation {
+        createPost(post:PostInput!): String
+    }    
+
 `;

@@ -50,7 +50,6 @@ exports.userResolvers = {
         }),
         updateUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
             const { userId, bio, name, username } = args.user;
-            console.log(userId, bio, name, username);
             if (!userId)
                 return "userId is needed";
             yield users.update({
