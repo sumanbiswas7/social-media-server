@@ -1,25 +1,6 @@
-const userResolver = require("./userResolvers")
-import { PrismaClient } from "@prisma/client"
-const { users } = new PrismaClient()
+import { merge } from "lodash"
+import { userResolvers } from "./userResolvers"
+import { postResolvers } from "./postResolvers"
 
-export const resolvers = {
-    Query: {
-        users: async () => {
-            return await users.findMany({
-                select: {
-                    id: true,
-                    name: true,
-                    username: true,
-                    bio: true,
-                    email: true,
-                    cratedAt: true,
-                    password: true,
-                    posts: true
-                }
-            })
-        }
-    },
-    Mutation: userResolver
-}
+export const resolvers = merge(userResolvers, postResolvers)
 
-// module.exports = { resolvers }

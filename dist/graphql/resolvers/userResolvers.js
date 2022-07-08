@@ -9,26 +9,45 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.userResolvers = void 0;
 const client_1 = require("@prisma/client");
 const { users } = new client_1.PrismaClient();
-const userResolvers = {
-    addUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
-        const { email, name, password, username, bio } = args.user;
-        yield users.create({
-            data: {
-                email, name, password, username, bio
-            }
-        });
-        return "user created sucess";
-    }),
-    deleteUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
-        const userId = args.userId;
-        yield users.delete({
-            where: {
-                id: userId
-            }
-        });
-        return `user with id - ${userId} deleted sucessfully`;
-    })
+exports.userResolvers = {
+    Query: {
+        users: () => __awaiter(void 0, void 0, void 0, function* () {
+            return yield users.findMany({
+                select: {
+                    id: true,
+                    name: true,
+                    username: true,
+                    bio: true,
+                    email: true,
+                    cratedAt: true,
+                    password: true,
+                    posts: true
+                }
+            });
+        })
+    },
+    Mutation: {
+        addUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const { email, name, password, username, bio } = args.user;
+            yield users.create({
+                data: {
+                    email, name, password, username, bio
+                }
+            });
+            return "user created sucess";
+        }),
+        deleteUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const userId = args.userId;
+            yield users.delete({
+                where: {
+                    id: userId
+                }
+            });
+            return `user with id - ${userId} deleted sucessfully`;
+        })
+    }
 };
-module.exports = userResolvers;
+// module.exports = { userResolvers } 

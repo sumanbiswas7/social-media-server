@@ -1,35 +1,7 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolvers = void 0;
-const userResolver = require("./userResolvers");
-const client_1 = require("@prisma/client");
-const { users } = new client_1.PrismaClient();
-exports.resolvers = {
-    Query: {
-        users: () => __awaiter(void 0, void 0, void 0, function* () {
-            return yield users.findMany({
-                select: {
-                    id: true,
-                    name: true,
-                    username: true,
-                    bio: true,
-                    email: true,
-                    cratedAt: true,
-                    password: true,
-                    posts: true
-                }
-            });
-        })
-    },
-    Mutation: userResolver
-};
-// module.exports = { resolvers }
+const lodash_1 = require("lodash");
+const userResolvers_1 = require("./userResolvers");
+const postResolvers_1 = require("./postResolvers");
+exports.resolvers = (0, lodash_1.merge)(userResolvers_1.userResolvers, postResolvers_1.postResolvers);
