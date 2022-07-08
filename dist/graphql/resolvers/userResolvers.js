@@ -47,7 +47,23 @@ exports.userResolvers = {
                 }
             });
             return `user with id - ${userId} deleted sucessfully`;
+        }),
+        updateUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const { userId, bio, name, username } = args.user;
+            console.log(userId, bio, name, username);
+            if (!userId)
+                return "userId is needed";
+            yield users.update({
+                where: {
+                    id: userId
+                },
+                data: {
+                    bio: bio || undefined,
+                    name: name || undefined,
+                    username: username || undefined
+                },
+            });
+            return `user with id - ${userId} updated sucessfully`;
         })
     }
 };
-// module.exports = { userResolvers } 

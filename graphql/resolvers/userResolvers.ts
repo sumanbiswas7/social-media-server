@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client"
 const { users } = new PrismaClient()
-interface user {
+interface User {
     user: {
+        userId?: number
         username: string
         name: string
         email: string
@@ -28,7 +29,7 @@ export const userResolvers = {
         }
     },
     Mutation: {
-        addUser: async (parent: any, args: user, ctx: any) => {
+        addUser: async (parent: any, args: User, ctx: any) => {
             const { email, name, password, username, bio } = args.user;
             await users.create({
                 data: {
@@ -45,9 +46,24 @@ export const userResolvers = {
                 }
             })
             return `user with id - ${userId} deleted sucessfully`
+        },
+        updateUser: async (parent: any, args: User, ctx: any) => {
+            const { userId, bio, name, username } = args.user
+            if (!userId) return "userId is needed"
+
+            await users.update({
+                where: {
+                    id: userId
+                },
+                data: {
+                    bio: bio || undefined,
+                    name: name || undefined,
+                    username: username || undefined
+                },
+            })
+            return `user with id - ${userId} updated sucessfully`
         }
     }
 
 }
 
-// module.exports = { userResolvers } 

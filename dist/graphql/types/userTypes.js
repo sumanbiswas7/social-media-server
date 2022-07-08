@@ -23,6 +23,13 @@ exports.typeDefs = `
         password: String!
     }
 
+    input UpdateUserInput {
+        userId : Int!
+        username: String
+        name: String
+        bio: String
+    }
+
     type Query {
         users: [User]
     }
@@ -30,5 +37,6 @@ exports.typeDefs = `
     type Mutation {
         addUser(user: UserInput!): String
         deleteUser(userId: Int!): String
+        updateUser(user: UpdateUserInput!): String
     }
 `;

@@ -3,5 +3,3 @@ export const postResolvers = {
     },
     Mutation: {},
 }
-
-// module.exports = { postResolvers }

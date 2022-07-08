@@ -5,4 +5,3 @@ exports.postResolvers = {
     Query: {},
     Mutation: {},
 };
-// module.exports = { postResolvers }
