@@ -3,7 +3,7 @@ export const typeDefs = `
         id: Int
         username: String
         name: String
-        cratedAt: String
+        createdAt: String
         bio: String
         email: String
         password: String
@@ -32,7 +32,7 @@ export const typeDefs = `
     }
     
     type Mutation {
-        addUser(user: UserInput!): String
+        createUser(user: UserInput!): String
         deleteUser(userId: Int!): String
         updateUser(user: UpdateUserInput!): String
     }

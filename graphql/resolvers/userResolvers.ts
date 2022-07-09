@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client"
+import moment from "moment"
 const { users } = new PrismaClient()
 interface User {
     user: {
@@ -14,26 +15,29 @@ interface User {
 export const userResolvers = {
     Query: {
         users: async () => {
-            return await users.findMany({
+            const allusers = await users.findMany({
                 select: {
                     id: true,
                     name: true,
                     username: true,
                     bio: true,
                     email: true,
-                    cratedAt: true,
+                    createdAt: true,
                     password: true,
                     posts: true
                 }
             })
+            return allusers
         }
     },
     Mutation: {
-        addUser: async (parent: any, args: User, ctx: any) => {
+        createUser: async (parent: any, args: User, ctx: any) => {
             const { email, name, password, username, bio } = args.user;
+            const timestamp = moment().format("MMMM Do YYYY, h:mm:ss A");
+
             await users.create({
                 data: {
-                    email, name, password, username, bio
+                    email, name, password, username, bio, createdAt: timestamp
                 }
             })
             return "user created sucess"

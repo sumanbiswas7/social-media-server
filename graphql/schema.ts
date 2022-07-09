@@ -6,3 +6,6 @@ import { resolvers } from "./resolvers/resolvers";
 export const schema = makeExecutableSchema({
     typeDefs: [User, Post], resolvers: resolvers
 })
+
+
+

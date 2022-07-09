@@ -8,33 +8,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userResolvers = void 0;
 const client_1 = require("@prisma/client");
+const moment_1 = __importDefault(require("moment"));
 const { users } = new client_1.PrismaClient();
 exports.userResolvers = {
     Query: {
         users: () => __awaiter(void 0, void 0, void 0, function* () {
-            return yield users.findMany({
+            const allusers = yield users.findMany({
                 select: {
                     id: true,
                     name: true,
                     username: true,
                     bio: true,
                     email: true,
-                    cratedAt: true,
+                    createdAt: true,
                     password: true,
                     posts: true
                 }
             });
+            return allusers;
         })
     },
     Mutation: {
-        addUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+        createUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
             const { email, name, password, username, bio } = args.user;
+            const timestamp = (0, moment_1.default)().format("MMMM Do YYYY, h:mm:ss A");
             yield users.create({
                 data: {
-                    email, name, password, username, bio
+                    email, name, password, username, bio, createdAt: timestamp
                 }
             });
             return "user created sucess";

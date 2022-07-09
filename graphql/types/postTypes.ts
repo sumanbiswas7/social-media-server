@@ -39,7 +39,8 @@ export const typeDefs = `
         posts: [Post]
     }    
     type Mutation {
-        createPost(post:PostInput!): String
+        createPost(post: PostInput!): String
+        deletePost(postId: Int!): String
     }    
 
 `;
