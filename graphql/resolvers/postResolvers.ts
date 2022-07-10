@@ -16,7 +16,11 @@ export const postResolvers = {
             const allposts = await posts.findMany({
                 include: {
                     user: true,
-                    likes: true,
+                    likes: {
+                        include: {
+                            user: true
+                        }
+                    }
                     // comments: true
                 }
             })
