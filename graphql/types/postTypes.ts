@@ -35,12 +35,18 @@ export const typeDefs = `
         image : String
     }
 
+    input LikeInput {
+        postId : Int!
+        userId : Int!
+    }
+
     type Query {
         posts: [Post]
     }    
     type Mutation {
         createPost(post: PostInput!): String
         deletePost(postId: Int!): String
+        likePost(data: LikeInput!): String
     }    
 
 `;

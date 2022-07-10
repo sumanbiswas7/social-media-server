@@ -22,11 +22,10 @@ exports.postResolvers = {
             const allposts = yield posts.findMany({
                 include: {
                     user: true,
-                    // likes: true,
+                    likes: true,
                     // comments: true
                 }
             });
-            console.log(allposts);
             return allposts;
         })
     },
