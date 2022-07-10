@@ -37,5 +37,17 @@ export const likeResolvers = {
                 return `post with id - ${postId} liked by user - ${userId}`
             }
         }
+    },
+    Query: {
+        postLikes: async (parent: any, args: { postId: number }, ctx: any) => {
+            const postId = args.postId
+            return await likes.findMany({
+                where: {
+                    postId,
+                }, include: {
+                    user: true
+                }
+            })
+        }
     }
 }

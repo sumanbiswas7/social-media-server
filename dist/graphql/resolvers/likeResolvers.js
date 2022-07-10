@@ -45,5 +45,17 @@ exports.likeResolvers = {
                 return `post with id - ${postId} liked by user - ${userId}`;
             }
         })
+    },
+    Query: {
+        postLikes: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const postId = args.postId;
+            return yield likes.findMany({
+                where: {
+                    postId,
+                }, include: {
+                    user: true
+                }
+            });
+        })
     }
 };

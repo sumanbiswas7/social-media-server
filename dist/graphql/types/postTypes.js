@@ -45,7 +45,9 @@ exports.typeDefs = `
 
     type Query {
         posts: [Post]
+        postLikes(postId : Int!): [Like]
     }    
+
     type Mutation {
         createPost(post: PostInput!): String
         deletePost(postId: Int!): String
