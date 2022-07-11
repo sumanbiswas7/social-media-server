@@ -10,7 +10,18 @@ interface Comment {
 }
 
 export const commentResolvers = {
-    Query: {},
+    Query: {
+        postComments: async (parent: any, args: { postId: number }, ctx: any) => {
+            const postId = args.postId
+            return await comments.findMany({
+                where: {
+                    postId,
+                }, include: {
+                    user: true
+                }
+            })
+        }
+    },
     Mutation: {
         addComment: async (parent: any, args: Comment, ctx: any) => {
             const timestamp = moment().format("MMMM Do YYYY, h:mm:ss A");

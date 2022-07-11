@@ -17,7 +17,18 @@ const client_1 = require("@prisma/client");
 const moment_1 = __importDefault(require("moment"));
 const { comments } = new client_1.PrismaClient();
 exports.commentResolvers = {
-    Query: {},
+    Query: {
+        postComments: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const postId = args.postId;
+            return yield comments.findMany({
+                where: {
+                    postId,
+                }, include: {
+                    user: true
+                }
+            });
+        })
+    },
     Mutation: {
         addComment: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
             const timestamp = (0, moment_1.default)().format("MMMM Do YYYY, h:mm:ss A");

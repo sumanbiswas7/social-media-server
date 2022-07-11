@@ -49,6 +49,7 @@ export const typeDefs = `
     type Query {
         posts: [Post]
         postLikes(postId : Int!): [Like]
+        postComments(postId : Int!): [Comment]
     }    
 
     type Mutation {
