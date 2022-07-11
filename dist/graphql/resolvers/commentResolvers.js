@@ -26,6 +26,15 @@ exports.commentResolvers = {
                 data: { createdAt: timestamp, postId, userId, comment }
             });
             return `comment from ${userId} to the post ${postId}`;
+        }),
+        deleteComment: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const commentId = args.commentId;
+            yield comments.delete({
+                where: {
+                    id: commentId
+                }
+            });
+            return `comment with id ${commentId} deleted`;
         })
     }
 };

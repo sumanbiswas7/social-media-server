@@ -19,6 +19,16 @@ export const commentResolvers = {
                 data: { createdAt: timestamp, postId, userId, comment }
             })
             return `comment from ${userId} to the post ${postId}`
+        },
+
+        deleteComment: async (parent: any, args: { commentId: number }, ctx: any) => {
+            const commentId = args.commentId;
+            await comments.delete({
+                where: {
+                    id: commentId
+                }
+            })
+            return `comment with id ${commentId} deleted`
         }
     }
 }

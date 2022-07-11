@@ -55,10 +55,11 @@ exports.typeDefs = `
     }    
 
     type Mutation {
-        createPost(post: PostInput!): String
-        deletePost(postId: Int!): String
-        likePost(data: LikeInput!): String
-        addComment(data : commentInput!): String
+        createPost(post : PostInput!) : String
+        deletePost(postId : Int!) : String
+        likePost(data : LikeInput!) : String
+        addComment(data : commentInput!) : String
+        deleteComment(commentId : Int!) : String
     }    
 
 `;
