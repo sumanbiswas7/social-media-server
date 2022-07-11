@@ -20,8 +20,12 @@ export const postResolvers = {
                         include: {
                             user: true
                         }
+                    },
+                    comments: {
+                        include: {
+                            user: true
+                        }
                     }
-                    // comments: true
                 }
             })
             return allposts

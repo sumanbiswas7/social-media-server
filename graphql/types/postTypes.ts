@@ -40,6 +40,12 @@ export const typeDefs = `
         userId : Int!
     }
 
+    input commentInput {
+        postId  : Int!
+        userId  : Int!
+        comment : String!
+    }
+
     type Query {
         posts: [Post]
         postLikes(postId : Int!): [Like]
@@ -49,6 +55,7 @@ export const typeDefs = `
         createPost(post: PostInput!): String
         deletePost(postId: Int!): String
         likePost(data: LikeInput!): String
+        addComment(data : commentInput!): String
     }    
 
 `;

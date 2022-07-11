@@ -19,7 +19,6 @@ export const likeResolvers = {
                     userId, postId
                 }
             })
-            console.log(liked)
             if (liked.length > 0) {
                 await likes.deleteMany({
                     where: {

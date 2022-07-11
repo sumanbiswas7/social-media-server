@@ -26,7 +26,6 @@ exports.likeResolvers = {
                     userId, postId
                 }
             });
-            console.log(liked);
             if (liked.length > 0) {
                 yield likes.deleteMany({
                     where: {
